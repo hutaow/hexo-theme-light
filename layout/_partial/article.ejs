@@ -5,8 +5,22 @@
   <div class="post-content">
     <header>
       <% if (item.layout != 'page'){ %>
+        <!-- added by wangtao for new date style begin -->
+        <div class="date-wrapper">
+          <div class="date-shadow"></div>
+          <div class="date-mask"></div>
+          <div class="dateTitle">
+            <span class="d"><%= item.date.toDate().getDate() %></span>
+            <span class="ym"><%= item.date.toDate().getMonth() + 1 %>/<%= item.date.toDate().getFullYear() %></span>
+          </div>
+        </div>
+        <!-- added by wangtao for new date style end -->
+        <!-- removed by wangtao for new date style begin -->
+        <% if (0) { %>
         <div class="icon"></div>
         <time datetime="<%= item.date.toDate().toISOString() %>"><a href="<%- config.root %><%- item.path %>"><%= item.date.format(config.date_format) %></a></time>
+        <% } %>
+        <!-- removed by wangtao for new date style end -->
       <% } %>
       <%- partial('post/title') %>
     </header>
@@ -21,7 +35,7 @@
       <% if (index){ %>
         <% if (item.excerpt){ %>
           <div class="alignleft">
-            <a href="<%- config.root %><%- item.path %>#more" class="more-link"><%= theme.excerpt_link %></a>
+            <a href="<%- config.root %><%- item.path %>" class="more-link"><%= theme.excerpt_link %></a>
           </div>
         <% } %>
         <% if (item.comment && config.disqus_shortname){ %>
@@ -33,6 +47,7 @@
         <%- partial('post/category') %>
         <%- partial('post/tag') %>
         <%- partial('post/share') %>
+        <%- partial('post/bdshare') %>
       <% } %>
       <div class="clearfix"></div>
     </footer>
